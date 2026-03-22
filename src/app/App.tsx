@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import imgImage1 from "src/assets/logo.png";
+import imgImage1 from "../assets/logo.png";
 
 export default function App() {
   const [email, setEmail] = useState('');

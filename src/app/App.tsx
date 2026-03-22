@@ -18,15 +18,13 @@ export default function App() {
     <div className="bg-[#f7f7ea] min-h-screen w-full flex items-center justify-center p-4">
       <div className="relative w-full max-w-2xl flex flex-col items-center">
         {/* Green star image */}
-        <div className="relative h-[200px] w-[200px] md:h-[274px] md:w-[289px] mb-12 md:mb-16">
-          <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="mb-12 md:mb-16">
             <img 
-              alt="Decorative star" 
-              className="absolute h-[210.71%] left-[-27.54%] max-w-none top-[-46.9%] w-[154.4%]" 
-              src={imgImage1} 
-            />
-          </div>
-        </div>
+    alt="Decorative star" 
+    className="h-[200px] md:h-[274px] w-auto object-contain"
+    src={imgImage1} 
+  />
+</div>
 
         {/* Waitlist form */}
         <div className="w-full max-w-md px-4">

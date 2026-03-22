@@ -26,3 +26,7 @@ jobs:
           path: dist
       - id: deployment
         uses: actions/deploy-pages@v4
+
+      - run: npm run build
+      - run: cat dist/index.html   # ← add this line
+      - uses: actions/upload-pages-artifact@v3

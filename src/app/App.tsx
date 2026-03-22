@@ -1,16 +1,28 @@
 import { useState } from 'react';
+import { createClient } from '@supabase/supabase-js';
 import imgImage1 from "../assets/logo.png";
+
+const supabase = createClient(
+  'https://fvxriytsmdrkqjqfvhru.supabase.co',
+  'sb_publishable_Rnaj5jkuu51dTxPO7-Iv3Q_SFecnDo-'
+);
 
 export default function App() {
   const [email, setEmail] = useState('');
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (email && email.includes('@')) {
-      setIsSubmitted(true);
-      // In a real app, this would send to a backend/database
-      console.log('Email submitted:', email);
+      const { error } = await supabase
+        .from('email')
+        .insert([{ email }]);
+
+      if (!error) {
+        setIsSubmitted(true);
+      } else {
+        console.error('Error saving email:', error);
+      }
     }
   };
 
@@ -18,14 +30,13 @@ export default function App() {
     <div className="bg-[#f7f7ea] min-h-screen w-full flex items-center justify-center p-4">
       <div className="relative w-full max-w-2xl flex flex-col items-center">
         {/* Green star image */}
-          <div className="mb-12 md:mb-16">
-            <img 
-    alt="Decorative star" 
-    className="h-[200px] md:h-[274px] w-auto object-contain"
-    src={imgImage1} 
-  />
-</div>
-
+        <div className="mb-12 md:mb-16">
+          <img
+            alt="Decorative star"
+            className="h-[200px] md:h-[274px] w-auto object-contain"
+            src={imgImage1}
+          />
+        </div>
         {/* Waitlist form */}
         <div className="w-full max-w-md px-4">
           {!isSubmitted ? (
